@@ -144,7 +144,7 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/home/laisarva/hidralpress-prod/"
+            "location": os.getenv('LOCATION')
         }
     },
     "staticfiles": {

@@ -21,8 +21,8 @@ services:
     volumes:
       - '.:/hidralpress'
       - type: bind
-        source: "/home/laisarva/hidralpress-prod"
-        target: "/home/laisarva/hidralpress-prod"
+        source: ${SOURCE}
+        target: ${TARGET}
     ports:
       - "8000:8000"
       - "8953:8953"
