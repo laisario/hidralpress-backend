@@ -1,20 +1,20 @@
 from rest_framework import viewsets
-from .models import OS, Setor, Etapa, Imagem
-from .serializers import OSSerializer, SetorSerializer, EtapaSerializer, ImagemSerializer
+from .models import OS, Sector, Step, Image
+from .serializers import OSSerializer, SectorSerializer, StepSerializer, ImageSerializer
 
 class OSViewSet(viewsets.ModelViewSet):
     queryset = OS.objects.all()
     serializer_class = OSSerializer
 
-class SetorViewSet(viewsets.ModelViewSet):
-    queryset = Setor.objects.all()
-    serializer_class = SetorSerializer
+class SectorViewSet(viewsets.ModelViewSet):
+    queryset = Sector.objects.all()
+    serializer_class = SectorSerializer
 
-class EtapaViewSet(viewsets.ModelViewSet):
-    queryset = Etapa.objects.all()
-    serializer_class = EtapaSerializer
+class StepViewSet(viewsets.ModelViewSet):
+    queryset = Step.objects.all()
+    serializer_class = StepSerializer
 
-class ImagemViewSet(viewsets.ModelViewSet):
-    queryset = Imagem.objects.all()
-    serializer_class = ImagemSerializer
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 

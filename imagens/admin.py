@@ -2,21 +2,21 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 
-from .models import Imagem, Setor, Etapa, OS
+from .models import Image, Sector, Step, OS
 
 
-@admin.register(Imagem)
-class ImagemAdmin(admin.ModelAdmin):
-    list_display = ("id", "etapa", "imagem")
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ("id", "step", "image")
 
 
-@admin.register(Setor)
-class SetorAdmin(admin.ModelAdmin):
-    list_display = ("id", "os", "nome")
+@admin.register(Sector)
+class SectorAdmin(admin.ModelAdmin):
+    list_display = ("id", "os", "name")
 
-@admin.register(Etapa)
-class EtapaAdmin(admin.ModelAdmin):
-    list_display = ("id", "setor", "nome")
+@admin.register(Step)
+class StepAdmin(admin.ModelAdmin):
+    list_display = ("id", "sector", "name")
 
 @admin.register(OS)
 class OSAdmin(admin.ModelAdmin):

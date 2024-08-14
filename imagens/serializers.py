@@ -1,26 +1,26 @@
 from rest_framework import serializers
-from .models import OS, Setor, Etapa, Imagem
+from .models import OS, Sector, Step, Image
 
 
-class ImagemSerializer(serializers.ModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Imagem
-        fields = ['id', 'etapa', 'imagem']
+        model = Image
+        fields = ['id', 'step', 'image']
 
-class EtapaSerializer(serializers.ModelSerializer):
-    imagens = ImagemSerializer(many=True)
+class StepSerializer(serializers.ModelSerializer):
+    images = ImageSerializer(many=True)
     class Meta:
-        model = Etapa
-        fields = ['id', 'setor', 'nome', 'imagens']
+        model = Step
+        fields = ['id', 'sector', 'name', 'images']
 
-class SetorSerializer(serializers.ModelSerializer):
-    etapas = EtapaSerializer(many=True)
+class SectorSerializer(serializers.ModelSerializer):
+    steps = StepSerializer(many=True)
     class Meta:
-        model = Setor
-        fields = ['id', 'os', 'nome', 'etapas']
+        model = Sector
+        fields = ['id', 'os', 'name', 'steps']
 
 class OSSerializer(serializers.ModelSerializer):
-    setores = SetorSerializer(many=True)
+    sectors = SectorSerializer(many=True)
     class Meta:
         model = OS
-        fields = ['id', 'os', 'setores']
+        fields = ['id', 'os', 'sectors']

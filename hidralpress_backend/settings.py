@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'imagens',
+    'hidralpress_backend',
 ]
 
 MIDDLEWARE = [
@@ -81,11 +82,12 @@ WSGI_APPLICATION = 'hidralpress_backend.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "HOST": os.getenv("MYSQL_HOST"),
-        "PASSWORD": os.getenv("MYSQL_PASSWORD"),
-        "USER": os.getenv("MYSQL_USER"),
-        "NAME": os.getenv("MYSQL_NAME"),
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv('HOST'),
+        "PORT": os.getenv('PORT'),
+        "PASSWORD": os.getenv('PASSWORD'),
+        "USER": os.getenv('USER'),
+        "NAME": os.getenv('USER'),
     }
 }
 
@@ -134,3 +136,18 @@ STATIC_ROOT = 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL='/media/'
+MEDIA_ROOT='/home/laisarva/hidralpress-prod/'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
+        "OPTIONS": {
+            "location": "/home/laisarva/hidralpress-prod/"
+        }
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}

@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from imagens.views import OSViewSet, SetorViewSet, EtapaViewSet, ImagemViewSet
+from imagens.views import OSViewSet, SectorViewSet, StepViewSet, ImageViewSet
 from django.contrib import admin
 
 router = DefaultRouter()
 router.register(r'os', OSViewSet, basename='os')
-router.register(r'setores', SetorViewSet, basename='setor')
-router.register(r'etapas', EtapaViewSet, basename='etapa')
-router.register(r'imagens', ImagemViewSet, basename='imagem')
+router.register(r'sectors', SectorViewSet, basename='sector')
+router.register(r'steps', StepViewSet, basename='step')
+router.register(r'images', ImageViewSet, basename='image')
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include(router.urls)),
