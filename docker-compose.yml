@@ -16,8 +16,7 @@ services:
     container_name: 'api'
     build: .
     command: >
-      sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py runserver_plus 0.0.0.0:8000"
     volumes:
       - '.:/hidralpress'
       - type: bind
