@@ -29,7 +29,8 @@ class Step(models.Model):
     
 
 class OS(models.Model):
-    os = models.CharField(max_length=100, unique=True)
+    os = models.CharField(max_length=100, unique=True, db_index=True)
+    path = models.CharField(max_length=1024, unique=True, db_index=True, null=True, blank=True)
     sector = models.ForeignKey(Sector, related_name="os", null=True, blank=True, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -42,12 +43,7 @@ class StepOs(models.Model):
 
     
 def upload_to_server(instance, filename):
-    os_path = None
-    for root, dirs, _ in os.walk(default_storage.location):
-            for name in dirs:
-                if instance.step_os.os.os == name:
-                    os_path = os.path.join(root, name)
-
+    os_path = instance.os.path
     if not os_path:
         raise Exception("A pasta da OS não existe!")
     step_path = os_path + "/" + instance.step_os.step.name

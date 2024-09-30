@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-g24glhzyd!a56j$!+y6c@w&u1bk9cq-3+5w*pa)cj1bz0@-l2f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = 'True'
 
 
 # Application definition
@@ -61,8 +59,9 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.34',
-    'localhost'
+    '192.168.0.5',
+    'localhost',
+    'saf.hidralpress.local',
 ]
 
 ROOT_URLCONF = 'hidralpress_backend.urls'
@@ -91,12 +90,8 @@ WSGI_APPLICATION = 'hidralpress_backend.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.getenv('HOST'),
-        "PORT": os.getenv('PORT'),
-        "PASSWORD": os.getenv('PASSWORD'),
-        "USER": os.getenv('USER'),
-        "NAME": os.getenv('USER'),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -147,13 +142,13 @@ STATIC_ROOT = 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL='/media/'
-MEDIA_ROOT='/home/laisarva/hidralpress-prod/'
+MEDIA_ROOT='aaa'
 
 STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": os.getenv('LOCATION')
+            "location": "C:/test-prod/"
         }
     },
     "staticfiles": {

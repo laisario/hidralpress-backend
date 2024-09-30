@@ -22,13 +22,7 @@ class OSViewSet(viewsets.ModelViewSet):
 
 class ValidateOSView(views.APIView):
     def post(self, request, format=None):
-        os_data = request.data["os"]
-        for root, dirs, _ in os.walk(default_storage.location):
-                for name in dirs:
-                    if os_data == name:
-                        return response.Response({"ok": True})
-
-        return response.Response({"ok": False})
+        return response.Response({"ok": OS.objects.filter(os=request.data["os"]).exists()})
 
 
 class SectorViewSet(viewsets.ModelViewSet):
