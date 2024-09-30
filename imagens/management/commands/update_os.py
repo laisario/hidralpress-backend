@@ -1,8 +1,10 @@
-from django.core.files.storage import default_storage
-from django.core.management.base import BaseCommand
-from imagens.models import OS
 import re
 import os
+
+from django.core.files.storage import default_storage
+from django.core.management.base import BaseCommand
+
+from imagens.models import OS
 
 
 class Command(BaseCommand):

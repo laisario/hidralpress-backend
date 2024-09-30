@@ -43,7 +43,7 @@ class StepOs(models.Model):
 
     
 def upload_to_server(instance, filename):
-    os_path = instance.os.path
+    os_path = instance.step_os.os.path
     if not os_path:
         raise Exception("A pasta da OS não existe!")
     step_path = os_path + "/" + instance.step_os.step.name

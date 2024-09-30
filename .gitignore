@@ -2,6 +2,7 @@
 
 **/__pycache__/
 static/
-env/
 Dockerfile
 docker-compose.yml
+.venv/
+db.sqlite3
