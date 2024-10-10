@@ -149,7 +149,7 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/hidralpress-prod"
+            "location": "Z:"
         }
     },
     "staticfiles": {
