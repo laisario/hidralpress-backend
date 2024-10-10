@@ -62,6 +62,7 @@ ALLOWED_HOSTS = [
     '192.168.0.5',
     'localhost',
     'saf.hidralpress.local',
+    'localhost:3000',
 ]
 
 ROOT_URLCONF = 'hidralpress_backend.urls'
@@ -148,7 +149,7 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/home/laisarva/hidralpress-prod"
+            "location": "/hidralpress-prod"
         }
     },
     "staticfiles": {

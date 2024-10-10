@@ -26,10 +26,11 @@ class DirectoryHandler(FileSystemEventHandler):
         regex_match = re.search("OS [0-9]+-[0-9]+", event.src_path)
         if regex_match:
             os_number = event.src_path[regex_match.span()[0]:regex_match.span()[1]]
-            saved_os = OS.objects.filter(os=os_number)
-            if saved_os.exists():
-                saved_os = saved_os.first()
-                saved_os.delete()
+            if event.is_directory and event.src_path.endswith(os_number):
+                saved_os = OS.objects.filter(os=os_number)
+                if saved_os.exists():
+                    saved_os = saved_os.first()
+                    saved_os.delete()
 
         
 
