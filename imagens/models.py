@@ -14,14 +14,14 @@ class Sector(models.Model):
 
 
 class Steps(models.TextChoices):
-    ARRIVAL = "C-CHEGADA", _("Chegada")
+    ARRIVAL = "C-EQUIPAMENTO", _("Chegada")
     DISASSEMBLED = "E-DESMONTADO", _("Desmontado")
     READY = "E-PRONTO", _("Pronto")
     ASSEMBLY = "E-MONTAGEM", _("Montagem")
     TEST = "E-TESTE", _("Teste")
 
 class Step(models.Model):
-    name = models.CharField(max_length=12, choices=Steps.choices)
+    name = models.CharField(max_length=15, choices=Steps.choices)
     sector = models.ForeignKey(Sector, related_name="step", on_delete=models.CASCADE)
 
     def __str__(self):
