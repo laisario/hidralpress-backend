@@ -14,11 +14,11 @@ class Sector(models.Model):
 
 
 class Steps(models.TextChoices):
-    ARRIVAL = "chegada", _("Chegada")
-    DISASSEMBLED = "desmontado", _("Desmontado")
-    READY = "pronto", _("Pronto")
-    ASSEMBLY = "montagem", _("Montagem")
-    TEST = "teste", _("Teste")
+    ARRIVAL = "C-CHEGADA", _("Chegada")
+    DISASSEMBLED = "E-DESMONTADO", _("Desmontado")
+    READY = "E-PRONTO", _("Pronto")
+    ASSEMBLY = "E-MONTAGEM", _("Montagem")
+    TEST = "E-TESTE", _("Teste")
 
 class Step(models.Model):
     name = models.CharField(max_length=12, choices=Steps.choices)
