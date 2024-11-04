@@ -14,4 +14,8 @@ services:
       - "8953:8953"
 
 volumes:
-  .:
+  saf_mount:
+    driver_opts:
+      type: cifs 
+      o: username=saf,password=SAF@hidral,uid=1000,gid=1000,vers=3.0
+      device: //192.168.0.3/c-prod/

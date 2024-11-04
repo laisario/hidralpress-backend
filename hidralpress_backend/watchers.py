@@ -24,11 +24,8 @@ class DirectoryHandler(FileSystemEventHandler):
     
     def on_deleted(self, event):
         regex_match = re.search("OS [0-9]+-[0-9]+", event.src_path)
-        print(event.src_path, regex_match, 'aaaaaaaaa')
         if regex_match:
             os_number = event.src_path[regex_match.span()[0]:regex_match.span()[1]]
-            print(os_number in event.src_path, 'cccccccccc')
-            print(os_number, event.src_path.endswith(os_number), 'bbbbbbbbbbbbb')
             if event.is_directory and os_number in event.src_path:
                 saved_os = OS.objects.filter(os=os_number)
                 if saved_os.exists():
