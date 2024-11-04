@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 
 import os
 from django.core.wsgi import get_wsgi_application
-from .watchers import FileWatcher
+from .watchers import batch_watch
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hidralpress_backend.settings')
 
 application = get_wsgi_application()
 print("Starting to watch for config file changes.")
-fw = FileWatcher()
+
+batch_watch()

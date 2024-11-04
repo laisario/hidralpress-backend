@@ -3,19 +3,12 @@ services:
     container_name: 'api'
     build: .
     command: >
-      sh -c "python manage.py runserver_plus 0.0.0.0:8000"
+      sh -c "python manage.py migrate"
     volumes:
       - '.:/hidralpress'
       - type: bind
-        source: /home/laisarva/hidralpress-prod
-        target: /hidralpress-prod
+        source: /mnt/c-prod
+        target: /pasta-compartilhada
     ports:
       - "8000:8000"
       - "8953:8953"
-
-volumes:
-  saf_mount:
-    driver_opts:
-      type: cifs 
-      o: username=saf,password=SAF@hidral,uid=1000,gid=1000,vers=3.0
-      device: //192.168.0.3/c-prod/

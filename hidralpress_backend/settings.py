@@ -149,7 +149,7 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/run/user/1000/gvfs/smb-share:server=192.168.0.3,share=c-prod"
+            "location": "/pasta-compartilhada"
         }
     },
     "staticfiles": {
