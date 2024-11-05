@@ -5,8 +5,10 @@ from django.core.cache import cache
 from rest_framework.decorators import action
 from .models import OS, Sector, Step, Image
 from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer
+from hidralpress_backend.watchers import on_created, on_deleted
 import subprocess
 import threading
+import re
 from rest_framework.response import Response
 
 
@@ -39,6 +41,17 @@ class OSViewSet(viewsets.ModelViewSet):
 class ValidateOSView(views.APIView):
     def post(self, request, format=None):
         return response.Response({"ok": OS.objects.filter(os=request.data["os"]).exists()})
+    
+
+class UpdateOnEventView(views.APIView):
+    def post(self, request, format=None):
+        event_type = request.data["type"]
+        path = request.data["path"]
+        if event_type == "created" or event_type == "renamed":
+            on_created(path)
+        elif event_type == "deleted":
+            on_deleted(path)
+        return response.Response({"ok": True})
 
 
 class SectorViewSet(viewsets.ModelViewSet):

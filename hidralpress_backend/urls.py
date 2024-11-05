@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from imagens.views import OSViewSet, SectorViewSet, StepViewSet, ImageViewSet, StepOsViewSet, ValidateOSView
+from imagens.views import OSViewSet, SectorViewSet, StepViewSet, ImageViewSet, StepOsViewSet, ValidateOSView, UpdateOnEventView
 from django.contrib import admin
 
 router = DefaultRouter()
@@ -27,5 +27,6 @@ router.register(r'images', ImageViewSet, basename='image')
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include(router.urls)),
-    path('validate-os/', ValidateOSView.as_view())
+    path('validate-os/', ValidateOSView.as_view()),
+    path('event-update/', UpdateOnEventView.as_view())
 ]
