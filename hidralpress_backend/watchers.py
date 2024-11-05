@@ -76,26 +76,23 @@ class FileWatcher(object):
 def get_top_level_dirs(base_path):
     return [os.path.join(base_path, d) for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))]
 
-def start_recursive_watch(observer, dirs):
+def start_recursive_watch(dirs):
+    observer = Observer()
     handler = DirectoryHandler()
     for dir in dirs:
         observer.schedule(handler, dir, recursive=True)
-        observer.start()
+    observer.start()
 
 def batch_watch(batch_size=5, delay=2):
     dirs = get_top_level_dirs(default_storage.location)
     print("Iniciando observers para os seguintes diretorios:")
     for dir in dirs:
         print("-  " + dir)
-    observer = Observer()
     for i in range(0, len(dirs), batch_size):
         batch = dirs[i:i + batch_size]
-        thread = Thread(target=start_recursive_watch, args=(observer, batch))
+        thread = Thread(target=start_recursive_watch, args=(batch,))
+        thread.daemon = True
         thread.start()
         time.sleep(delay)
 
-    for thread in thread_enumerate():
-        if thread is not main_thread():
-            thread.join()
-
-    print("Observers inicializados com sucesso")
+    print("Observers inicializando em segundo plano...")
