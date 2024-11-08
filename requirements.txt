@@ -3,6 +3,5 @@ djangorestframework==3.14.0
 Pillow==10.4.0
 django-cors-headers==4.4.0
 django-extensions==3.2.3
-Werkzeug==3.0.3
-pyOpenSSL==24.2.1
-watchdog==5.0.3
+gunicorn==23.0.0
+psycopg2-binary==2.9.10

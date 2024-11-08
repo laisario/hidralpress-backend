@@ -59,7 +59,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
-    '192.168.0.5',
+    '192.168.0.6',
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
@@ -91,8 +91,12 @@ WSGI_APPLICATION = 'hidralpress_backend.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "saf",
+        "USER": "admin",
+        "PASSWORD": "SAF@hidral",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -149,10 +153,12 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/pasta-compartilhada"
+            "location": "/mnt/c-prod"
         }
     },
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = None

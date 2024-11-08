@@ -33,7 +33,7 @@ class OSViewSet(viewsets.ModelViewSet):
         return Response({"status": "ok"})
 
     def run_update_os(self):
-        update_os = ["python", "manage.py", "update_os"]
+        update_os = ["/scan_dirs.sh"]
         process = subprocess.Popen(update_os, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         process.wait()
 
@@ -42,6 +42,25 @@ class ValidateOSView(views.APIView):
     def post(self, request, format=None):
         return response.Response({"ok": OS.objects.filter(os=request.data["os"]).exists()})
     
+
+class UpdateAllOSView(views.APIView):
+    def post(self, request, format=None):
+        OS.objects.all().delete()
+        file_data = request.body.decode('utf-8')
+        lines = file_data.strip().splitlines()
+        
+        records = []
+        for line in lines:
+            match = re.search("OS [0-9]+-[0-9]+", line)
+            record = OS(
+                os=line[match.span()[0]:match.span()[1]],
+                path=line,
+            )
+            records.append(record)
+        OS.objects.bulk_create(records, ignore_conflicts=True)
+        
+        return Response({"status": "success", "message": "Data uploaded successfully"}, status=status.HTTP_201_CREATED)
+
 
 class UpdateOnEventView(views.APIView):
     def post(self, request, format=None):
