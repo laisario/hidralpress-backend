@@ -63,6 +63,9 @@ ALLOWED_HOSTS = [
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
+    'https://797e-189-84-180-105.ngrok-free.app', # frontend
+    'https://797e-189-84-180-105.ngrok-free.app', # backend
+    
 ]
 
 ROOT_URLCONF = 'hidralpress_backend.urls'
@@ -153,7 +156,7 @@ STORAGES = {
     "default": {
         "BACKEND": "hidralpress_backend.storages.MyFileSystemStorage",
         "OPTIONS": {
-            "location": "/mnt/c-prod"
+            "location": "/hidralpress-prod"
         }
     },
     "staticfiles": {
