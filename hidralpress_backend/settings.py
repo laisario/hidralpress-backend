@@ -63,9 +63,9 @@ ALLOWED_HOSTS = [
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
-    'https://797e-189-84-180-105.ngrok-free.app', # frontend
-    'https://797e-189-84-180-105.ngrok-free.app', # backend
-    "tcp://0.tcp.sa.ngrok.io:19483",
+    '797e-189-84-180-105.ngrok-free.app', # frontend
+    '797e-189-84-180-105.ngrok-free.app', # backend
+    "0.tcp.sa.ngrok.io:19483",
     
 ]
 
