@@ -65,6 +65,7 @@ ALLOWED_HOSTS = [
     'localhost:3000',
     'https://797e-189-84-180-105.ngrok-free.app', # frontend
     'https://797e-189-84-180-105.ngrok-free.app', # backend
+    "tcp://0.tcp.sa.ngrok.io:19483",
     
 ]
 
@@ -165,3 +166,13 @@ STORAGES = {
 }
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
+
+# desenvolvimento
+
+CORS_ALLOWED_ORIGINS = [
+    'https://797e-189-84-180-105.ngrok-free.app',  # URL do ngrok
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
