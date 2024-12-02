@@ -175,6 +175,6 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['https://30f1-189-84-180-54.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://30f1-189-84-180-54.ngrok-free.app', 'https://f338-189-84-180-54.ngrok-free.app']
 
 
