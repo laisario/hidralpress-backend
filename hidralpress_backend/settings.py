@@ -179,3 +179,8 @@ SECURE_PROXY_SSL_HEADER = None
 CSRF_TRUSTED_ORIGINS = ['https://5ece-189-84-180-54.ngrok-free.app', 'https://c575-189-84-180-54.ngrok-free.app']
 
 
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'ngrok-skip-browser-warning',
+]
