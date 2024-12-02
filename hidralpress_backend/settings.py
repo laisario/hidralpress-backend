@@ -168,8 +168,8 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 # desenvolvimento
 
 CORS_ALLOWED_ORIGINS = [
-    '0184-189-84-180-54.ngrok-free.app',
-    '5ace-189-84-180-54.ngrok-free.app',
+    'https://0184-189-84-180-54.ngrok-free.app',
+    'https://5ace-189-84-180-54.ngrok-free.app',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
