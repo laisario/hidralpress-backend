@@ -45,7 +45,6 @@ class ValidateOSView(views.APIView):
 
 class UpdateAllOSView(views.APIView):
     def post(self, request, format=None):
-        OS.objects.all().delete()
         file_data = request.body.decode('utf-8')
         lines = file_data.strip().splitlines()
         
