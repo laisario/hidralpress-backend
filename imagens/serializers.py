@@ -54,7 +54,8 @@ class OSSerializerWrite(serializers.ModelSerializer):
             os=os,
         )
 
-        for image in validated_data["images"]:
+        image = validated_data["image"]
+        if image:
             Image.objects.create(step_os=step_os, image=image)
 
         return os
