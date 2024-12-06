@@ -85,6 +85,20 @@ class StepOsViewSet(viewsets.ModelViewSet):
     serializer_class = StepOsSerializer
 
 class ImageViewSet(viewsets.ModelViewSet):
-    queryset = Image.objects.all()
     serializer_class = ImageSerializer
+
+    def get_queryset(self):
+        step_name = self.request.query_params.get('step', None)
+        os_identifier = self.request.query_params.get('os', None)
+        
+        queryset = Image.objects.all()
+
+        if step_name and os_identifier:
+            queryset = queryset.filter(
+                step_os__step__name=step_name,
+                step_os__os__os=os_identifier
+            )
+        
+        return queryset
+
 

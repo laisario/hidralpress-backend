@@ -2,6 +2,7 @@ from django.db import models
 import os
 from django.core.files.storage import default_storage
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
 
 class Sectors(models.TextChoices):
     DISASSEMBLY = "desmontagem", _("Desmontagem")
@@ -55,6 +56,7 @@ def upload_to_server(instance, filename):
 class Image(models.Model):
     step_os = models.ForeignKey(StepOs, related_name='images', on_delete=models.CASCADE)
     image = models.FileField(upload_to=upload_to_server)
+    created_at = models.DateTimeField(default=now)
 
     def __str__(self):
         return f"{self.step_os.step.name} - Image"
