@@ -44,17 +44,17 @@ class OSSerializerWrite(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-        sector, _ = Sector.objects.get_or_create(name=validated_data["sector"])
-        os, created = OS.objects.get_or_create(os=validated_data["os"])
+        sector, _ = Sector.objects.get_or_create(name=validated_data.get("sector"))
+        os, created = OS.objects.get_or_create(os=validated_data.get("os"))
         os.sector = sector
         os.save()
-        step, _ = Step.objects.get_or_create(name=validated_data["step"])
+        step, _ = Step.objects.get_or_create(name=validated_data.get("step"))
         step_os, _ = StepOs.objects.get_or_create(
             step=step,
             os=os,
         )
 
-        image = validated_data["image"]
+        image = validated_data.get("image")
         if image:
             Image.objects.create(step_os=step_os, image=image)
 
