@@ -36,7 +36,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
     os = serializers.CharField(required=True, max_length=20)
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
-    images = serializers.ListField()
+    image = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
 
     class Meta:
         model = OS
@@ -44,17 +44,17 @@ class OSSerializerWrite(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-        sector, _ = Sector.objects.get_or_create(name=validated_data.get("sector"))
-        os, created = OS.objects.get_or_create(os=validated_data.get("os"))
+        sector, _ = Sector.objects.get_or_create(name=validated_data["sector"])
+        os, created = OS.objects.get_or_create(os=validated_data["os"])
         os.sector = sector
         os.save()
-        step, _ = Step.objects.get_or_create(name=validated_data.get("step"))
+        step, _ = Step.objects.get_or_create(name=validated_data["step"])
         step_os, _ = StepOs.objects.get_or_create(
             step=step,
             os=os,
         )
 
-        image = validated_data.get("image")
+        image = validated_data["image"]
         if image:
             Image.objects.create(step_os=step_os, image=image)
 
