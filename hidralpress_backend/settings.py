@@ -171,12 +171,13 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 CORS_ALLOWED_ORIGINS = [
     'https://fa59-189-84-180-83.ngrok-free.app',
     'https://8f8e-189-84-180-83.ngrok-free.app',
+    'http://localhost:3000',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['https://8f8e-189-84-180-83.ngrok-free.app', 'https://fa59-189-84-180-83.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://8f8e-189-84-180-83.ngrok-free.app', 'https://fa59-189-84-180-83.ngrok-free.app', 'http://localhost:3000',]
 
 
 from corsheaders.defaults import default_headers
