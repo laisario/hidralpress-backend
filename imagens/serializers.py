@@ -1,25 +1,25 @@
-import base64
 from rest_framework import serializers
-from django.core.files.base import ContentFile
-
 from .models import OS, Sector, Step, Image, StepOs
 
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['id', 'step_os', 'image']
+        fields = ['id', 'step_os', 'thumbnail']
+
 
 class SectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sector
         fields = ['id', 'name']
 
+
 class StepSerializer(serializers.ModelSerializer):
     sector = SectorSerializer()
     class Meta:
         model = Step
         fields = ['id', 'name', "sector"]
+
 
 class StepOsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,6 +31,7 @@ SECTOR_CHOICES =(
     ("desmontagem", "Desmontagem"),  
     ("montagem", "Montagem"), 
 ) 
+
 
 class OSSerializerWrite(serializers.ModelSerializer):
     os = serializers.CharField(required=True, max_length=20)

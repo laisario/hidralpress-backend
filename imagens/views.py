@@ -1,15 +1,8 @@
 import os
+import re
 from rest_framework import viewsets, response, views, status
-from django.core.files.storage import default_storage
-from django.core.cache import cache
-from rest_framework.decorators import action
 from .models import OS, Sector, Step, Image
 from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer
-from hidralpress_backend.watchers import on_created, on_deleted
-import subprocess
-import threading
-import re
-from rest_framework.response import Response
 
 
 class OSViewSet(viewsets.ModelViewSet):
@@ -25,17 +18,6 @@ class OSViewSet(viewsets.ModelViewSet):
         serializer.is_valid()
         os = serializer.save(**serializer.validated_data)
         return response.Response(OSSerializerRead(os).data)
-    
-    @action(detail=False, methods=['post'])
-    def execute_update_os(self, request):
-        cache.set("update_os_progress", "started")
-        threading.Thread(target=self.run_update_os).start()
-        return Response({"status": "ok"})
-
-    def run_update_os(self):
-        update_os = ["/scan_dirs.sh"]
-        process = subprocess.Popen(update_os, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-        process.wait()
 
 
 class ValidateOSView(views.APIView):
@@ -58,31 +40,23 @@ class UpdateAllOSView(views.APIView):
             records.append(record)
         OS.objects.bulk_create(records, ignore_conflicts=True)
         
-        return Response({"status": "success", "message": "Data uploaded successfully"}, status=status.HTTP_201_CREATED)
-
-
-class UpdateOnEventView(views.APIView):
-    def post(self, request, format=None):
-        event_type = request.data["type"]
-        path = request.data["path"]
-        if event_type == "created" or event_type == "renamed":
-            on_created(path)
-        elif event_type == "deleted":
-            on_deleted(path)
-        return response.Response({"ok": True})
+        return response.Response({"status": "success", "message": "Data uploaded successfully"}, status=status.HTTP_201_CREATED)
 
 
 class SectorViewSet(viewsets.ModelViewSet):
     queryset = Sector.objects.all()
     serializer_class = SectorSerializer
 
+
 class StepViewSet(viewsets.ModelViewSet):
     queryset = Step.objects.all()
     serializer_class = StepSerializer
 
+
 class StepOsViewSet(viewsets.ModelViewSet):
     queryset = Step.objects.all()
     serializer_class = StepOsSerializer
+
 
 class ImageViewSet(viewsets.ModelViewSet):
     serializer_class = ImageSerializer
@@ -90,15 +64,11 @@ class ImageViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         step_name = self.request.query_params.get('step', None)
         os_identifier = self.request.query_params.get('os', None)
-        
-        queryset = Image.objects.all()
 
         if step_name and os_identifier:
-            queryset = queryset.filter(
+            queryset = Image.objects.filter(
                 step_os__step__name=step_name,
                 step_os__os__os=os_identifier
             )
         
-        return queryset
-
-
+        return Image.objects.none()

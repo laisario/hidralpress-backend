@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'imagens',
-    'hidralpress_backend',
     'corsheaders',
     'django_extensions',
+    'imagekit',
+    'hidralpress_backend',
+    'imagens',
 ]
 
 MIDDLEWARE = [
