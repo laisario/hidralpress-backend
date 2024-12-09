@@ -66,7 +66,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         os_identifier = self.request.query_params.get('os', None)
 
         if step_name and os_identifier:
-            queryset = Image.objects.filter(
+            return Image.objects.filter(
                 step_os__step__name=step_name,
                 step_os__os__os=os_identifier
             )
