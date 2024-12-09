@@ -5,7 +5,7 @@ from .models import OS, Sector, Step, Image, StepOs
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['id', 'step_os', 'thumbnail']
+        fields = ['id', 'step_os']
 
 
 class SectorSerializer(serializers.ModelSerializer):
