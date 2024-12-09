@@ -55,7 +55,7 @@ def upload_to_server(instance, filename):
 
 class Image(models.Model):
     step_os = models.ForeignKey(StepOs, related_name='images', on_delete=models.CASCADE)
-    image = models.FileField(upload_to=upload_to_server)
+    image = models.FileField(upload_to=upload_to_server, max_length=1000)
     created_at = models.DateTimeField(default=now)
 
     def __str__(self):

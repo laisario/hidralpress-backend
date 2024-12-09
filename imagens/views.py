@@ -1,5 +1,6 @@
 import os
 from rest_framework import viewsets, response, views, status
+from django.core.files.storage import default_storage
 from django.core.cache import cache
 from rest_framework.decorators import action
 from .models import OS, Sector, Step, Image
