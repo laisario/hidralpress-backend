@@ -60,7 +60,7 @@ def upload_to_server(instance, filename):
 class Image(models.Model):
     step_os = models.ForeignKey(StepOs, related_name='images', on_delete=models.CASCADE)
     image = models.FileField(upload_to=upload_to_server, max_length=1000)
-    thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(225, 400)], format='JPEG', options={'quality': 60}, cachefile_strategy=JustInTime())
+    # thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(225, 400)], format='JPEG', options={'quality': 60}, cachefile_strategy=JustInTime())
     created_at = models.DateTimeField(default=now)
 
     def __str__(self):
