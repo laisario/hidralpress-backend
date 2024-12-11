@@ -60,7 +60,7 @@ class StepOsViewSet(viewsets.ModelViewSet):
 
 class ImageViewSet(viewsets.ModelViewSet):
     serializer_class = ImageSerializer
-
+     
     def get_queryset(self):
         step_name = self.request.query_params.get('step', None)
         os_identifier = self.request.query_params.get('os', None)
