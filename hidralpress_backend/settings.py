@@ -64,8 +64,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
-    'fa59-189-84-180-83.ngrok-free.app',
-    '8f8e-189-84-180-83.ngrok-free.app',
+    '4ba1-177-71-79-40.ngrok-free.app',
 ]
 
 ROOT_URLCONF = 'hidralpress_backend.urls'
@@ -170,15 +169,14 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 # desenvolvimento
 
 CORS_ALLOWED_ORIGINS = [
-    'https://fa59-189-84-180-83.ngrok-free.app',
-    'https://8f8e-189-84-180-83.ngrok-free.app',
     'http://localhost:3000',
+    "https://a84c-177-71-79-40.ngrok-free.app/"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['https://8f8e-189-84-180-83.ngrok-free.app', 'https://fa59-189-84-180-83.ngrok-free.app', 'http://localhost:3000',]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', "https://a84c-177-71-79-40.ngrok-free.app/"]
 
 
 from corsheaders.defaults import default_headers
