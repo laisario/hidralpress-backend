@@ -3,9 +3,14 @@ from .models import OS, Sector, Step, Image, StepOs
 
 
 class ImageSerializer(serializers.ModelSerializer):
+    thumbnail = serializers.SerializerMethodField()
+
     class Meta:
         model = Image
         fields = ['id', 'step_os', 'image', 'thumbnail', 'created_at']
+
+    def get_thumbnail(self, obj):
+        return obj.thumbnail.url
 
 
 class SectorSerializer(serializers.ModelSerializer):
