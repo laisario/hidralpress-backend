@@ -168,7 +168,7 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # desenvolvimento
 FRONT_URL = "https://a84c-177-71-79-40.ngrok-free.app"
-BACK_URL = "http://4ba1-177-71-79-40.ngrok-free.app"
+BACK_URL = "https://4ba1-177-71-79-40.ngrok-free.app"
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
