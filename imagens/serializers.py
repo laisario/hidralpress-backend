@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.conf import settings
 from .models import OS, Sector, Step, Image, StepOs
 
 
@@ -10,7 +11,8 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'step_os', 'image', 'thumbnail', 'created_at']
 
     def get_thumbnail(self, obj):
-        return obj.thumbnail.url
+        url = settings.FRONT_URL + obj.thumbnail.url
+        return url
 
 
 class SectorSerializer(serializers.ModelSerializer):

@@ -167,16 +167,17 @@ STORAGES = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # desenvolvimento
+FRONT_URL = "https://a84c-177-71-79-40.ngrok-free.app"
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    "https://a84c-177-71-79-40.ngrok-free.app/"
+    FRONT_URL
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', "https://a84c-177-71-79-40.ngrok-free.app/"]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', FRONT_URL]
 
 
 from corsheaders.defaults import default_headers
