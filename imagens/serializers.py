@@ -11,7 +11,7 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'step_os', 'image', 'thumbnail', 'created_at']
 
     def get_thumbnail(self, obj):
-        url = settings.FRONT_URL + obj.thumbnail.url
+        url = settings.BACK_URL + obj.thumbnail.url
         return url
 
 
