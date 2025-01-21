@@ -64,7 +64,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
-    '4ba1-177-71-79-40.ngrok-free.app',
+    'hidralpress.ngrok.app',
 ]
 
 ROOT_URLCONF = 'hidralpress_backend.urls'
@@ -167,8 +167,8 @@ STORAGES = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # desenvolvimento
-FRONT_URL = "https://a84c-177-71-79-40.ngrok-free.app"
-BACK_URL = "https://4ba1-177-71-79-40.ngrok-free.app"
+FRONT_URL = "https://582bfb0e0370.ngrok.app"
+BACK_URL = "https://hidralpress.ngrok.app"
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
