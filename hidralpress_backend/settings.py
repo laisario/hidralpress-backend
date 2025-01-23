@@ -27,7 +27,6 @@ SECRET_KEY = 'django-insecure-g24glhzyd!a56j$!+y6c@w&u1bk9cq-3+5w*pa)cj1bz0@-l2f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'True'
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -178,7 +176,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', FRONT_URL]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', FRONT_URL, BACK_URL]
 
 
 from corsheaders.defaults import default_headers
