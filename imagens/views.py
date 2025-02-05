@@ -40,15 +40,14 @@ class UpdateAllOSView(views.APIView):
         file_data = request.body.decode('utf-8')
         lines = file_data.strip().splitlines()
         
-        records = []
+        record_dict = {}
         for line in lines:
             match = re.search("OS [0-9]+-[0-9]+", line)
-            record = OS(
-                os=line[match.span()[0]:match.span()[1]],
-                path=line,
-            )
-            records.append(record)
-        OS.objects.bulk_create(records, ignore_conflicts=True)
+            if match:
+                os_value = line[match.span()[0]:match.span()[1]]
+                record_dict[os_value] = line
+        records = [OS(os=os_key, path=path) for os_key, path in record_dict.items()]
+        OS.objects.bulk_create(records, update_conflicts=True, unique_fields=['os'], update_fields=['path'])
         
         return response.Response({"status": "success", "message": "Data uploaded successfully"}, status=status.HTTP_201_CREATED)
 
