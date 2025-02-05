@@ -3,7 +3,7 @@ import re
 from rest_framework import viewsets, response, views, status
 from .models import OS, Sector, Step, Image
 from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer
-
+from datetime import date
 
 class OSViewSet(viewsets.ModelViewSet):
     queryset = OS.objects.all()
@@ -22,7 +22,17 @@ class OSViewSet(viewsets.ModelViewSet):
 
 class ValidateOSView(views.APIView):
     def post(self, request, format=None):
-        return response.Response({"ok": OS.objects.filter(os=request.data["os"]).exists()})
+        current_year = date.today().year
+        time_available = current_year - 1
+        year_available = str(time_available)[2:]
+        os = request.data["os"]
+
+
+        year = os[7:9]
+
+        if year < year_available:
+            return response.Response({"ok": False, "msg": 'Ano indisponível para tirar foto'})
+        return response.Response({"ok": OS.objects.filter(os=os).exists()})
     
 
 class UpdateAllOSView(views.APIView):
