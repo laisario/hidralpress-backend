@@ -4,3 +4,4 @@
 static/
 venv/
 db.sqlite3
+.venv/

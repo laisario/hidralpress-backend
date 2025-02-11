@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -59,6 +59,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
     '192.168.0.6',
+    '192.168.0.6:8000',
     'localhost',
     'saf.hidralpress.local',
     'localhost:3000',
@@ -165,18 +166,14 @@ STORAGES = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # desenvolvimento
-FRONT_URL = "https://582bfb0e0370.ngrok.app"
-BACK_URL = "https://hidralpress.ngrok.app"
+# BACK_URL = "https://hidralpress.ngrok.app"
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    FRONT_URL
-]
+BACK_URL = "http://192.168.0.6:8000"
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', FRONT_URL, BACK_URL]
 
 
 from corsheaders.defaults import default_headers
