@@ -4,6 +4,8 @@ from rest_framework import viewsets, response, views, status
 from .models import OS, Sector, Step, Image
 from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer
 from datetime import date
+from django.core.files.storage import default_storage
+
 
 class OSViewSet(viewsets.ModelViewSet):
     queryset = OS.objects.all()
@@ -80,3 +82,17 @@ class ImageViewSet(viewsets.ModelViewSet):
             )
         
         return Image.objects.none()
+    
+    def destroy(self, request, *arg, **kwargs):
+        instance = self.get_object()
+
+        image_path = instance.image
+ 
+        if os.path.exists(image_path):
+            default_storage.delete(image_path)
+
+        self.perform_destroy(instance)
+
+        return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)    
+
+
