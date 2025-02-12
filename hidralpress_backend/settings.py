@@ -166,9 +166,9 @@ STORAGES = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # desenvolvimento
-# BACK_URL = "https://hidralpress.ngrok.app"
+BACK_URL = "https://hidralpress.ngrok.app"
 
-BACK_URL = "http://192.168.0.6:8000"
+# BACK_URL = "http://192.168.0.6:8000"
 
 
 CORS_ALLOW_ALL_ORIGINS = True
