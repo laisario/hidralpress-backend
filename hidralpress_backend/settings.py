@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -174,6 +174,10 @@ BACK_URL = "https://hidralpress.ngrok.app"
 CORS_ALLOW_ALL_ORIGINS = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = None
+
+CSRF_TRUSTED_ORIGINS = [BACK_URL]
+
+
 
 
 from corsheaders.defaults import default_headers

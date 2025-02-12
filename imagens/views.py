@@ -27,7 +27,6 @@ class ValidateOSView(views.APIView):
         year_available = str(time_available)[2:]
         os = request.data["os"]
 
-
         year = os[7:9]
 
         if year < year_available:
