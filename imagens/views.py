@@ -86,9 +86,13 @@ class ImageViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *arg, **kwargs):
         instance = self.get_object()
 
-        image_path = instance.image.name
+        image_path = instance.image
+        print(f"Caminho da imagem: {image_path}")
+        print(image_path.name)
+        print(image_path.path)
+        print(image_path.url)   
  
-        if os.path.exists(instance.image):
+        if os.path.exists(image_path):
             default_storage.delete(image_path)
 
         self.perform_destroy(instance)
