@@ -88,7 +88,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
         image_path = instance.image.name
  
-        if os.path.exists(image_path):
+        if os.path.exists(instance.image):
             default_storage.delete(image_path)
 
         self.perform_destroy(instance)
