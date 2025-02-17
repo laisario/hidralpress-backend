@@ -79,7 +79,7 @@ class ImageViewSet(viewsets.ModelViewSet):
             return Image.objects.filter(
                 step_os__step__name=step_name,
                 step_os__os__os=os_identifier
-            ).reverse()
+            ).order_by("pk").reverse()
         
         return Image.objects.none()
     
