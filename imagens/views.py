@@ -95,7 +95,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         if os.path.exists(image_path):
             default_storage.delete(image_path)
 
-        instance.delete()
+        super().destroy()
 
         return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)    
 
