@@ -83,7 +83,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         
         return Image.objects.none()
     
-    def destroy(self, request, *arg, **kwargs):
+    def destroy(self, *arg, **kwargs):
         instance = self.get_object()
 
         image_path = instance.image.path
@@ -95,7 +95,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         if os.path.exists(image_path):
             default_storage.delete(image_path)
 
-        super().destroy()
+        super().destroy(*arg, **kwargs)
 
         return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)    
 
