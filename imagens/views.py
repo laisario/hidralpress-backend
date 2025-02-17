@@ -87,10 +87,6 @@ class ImageViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
 
         image_path = instance.image.path
-        print("achar", instance.image)
-        print("achar", instance.image.name)
-        print("achar", instance.image.path)
-        print("achar", instance.image.url)   
  
         if os.path.exists(image_path):
             default_storage.delete(image_path)
