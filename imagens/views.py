@@ -97,6 +97,6 @@ class ImageViewSet(viewsets.ModelViewSet):
 
         super().destroy(*arg, **kwargs)
 
-        return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)    
+        return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_200_OK)    
 
 
