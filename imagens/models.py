@@ -50,14 +50,12 @@ class StepOs(models.Model):
 def upload_to_server(instance, filename):
     os_path = instance.step_os.os.path
     mime_type = 'video' if filename.endswith(".mp4") else 'imagem'
-    print(mime_type, 'achar')
     if not os_path:
         raise Exception("A pasta da OS não existe!")
     step_path = os_path + "/" + instance.step_os.step.name
     if not os.path.exists(step_path):
         os.mkdir(step_path)
     filename = f"imagem_{instance.created_at}.jpg" if mime_type == "imagem" else f"video_{instance.created_at}.mp4"
-    print(filename, 'achar')
     return os.path.relpath(f"{step_path}/{filename}", default_storage.location)
 
 
