@@ -28,8 +28,10 @@ class ValidateOSView(views.APIView):
         time_available = current_year - 1
         year_available = str(time_available)[2:]
         os = request.data["os"]
-
+ 
         year = os[7:9]
+
+        print('AAAAA', OS.objects.filter(os=os).exists())
 
         if year < year_available:
             return response.Response({"ok": False, "msg": 'Ano indisponível para tirar foto'})
