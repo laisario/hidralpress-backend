@@ -73,7 +73,16 @@ class Image(models.Model):
         cachefile_strategy=JustInTime()
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return f"{self.step_os.step.name} - Image {self.pk}"
     
+class Video(models.Model):
+    step_os = models.ForeignKey(StepOs, related_name='videos', on_delete=models.CASCADE)
+    video = models.FileField(upload_to=upload_to_server, max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.step_os.step.name} - Vídeo {self.pk}"
+        

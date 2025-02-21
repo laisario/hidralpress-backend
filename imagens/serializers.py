@@ -15,6 +15,12 @@ class ImageSerializer(serializers.ModelSerializer):
         return url
 
 
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['id', 'step_os', 'video', 'created_at']
+
+
 class SectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sector

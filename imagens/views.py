@@ -1,8 +1,8 @@
 import os
 import re
 from rest_framework import viewsets, response, views, status
-from .models import OS, Sector, Step, Image
-from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer
+from .models import OS, Sector, Step, Image, Video
+from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer, VideoSerializer
 from datetime import date
 from django.core.files.storage import default_storage
 
@@ -95,4 +95,31 @@ class ImageViewSet(viewsets.ModelViewSet):
 
         return response.Response({"detail": "Imagem deletada com sucesso."}, status=status.HTTP_200_OK)    
 
+
+class VideoViewSet(viewsets.ModelViewSet):
+    serializer_class = VideoSerializer
+     
+    def get_queryset(self):
+        step_name = self.request.query_params.get('step', None)
+        os_identifier = self.request.query_params.get('os', None)
+
+        if step_name and os_identifier:
+            return Video.objects.filter(
+                step_os__step__name=step_name,
+                step_os__os__os=os_identifier
+            ).order_by("pk").reverse()
+        
+        return Video.objects.none()
+    
+    def destroy(self, *arg, **kwargs):
+        instance = self.get_object()
+
+        video_path = instance.video.path
+ 
+        if os.path.exists(video_path):
+            default_storage.delete(video_path)
+
+        super().destroy(*arg, **kwargs)
+
+        return response.Response({"detail": "Vídeo deletado com sucesso."}, status=status.HTTP_200_OK) 
 
