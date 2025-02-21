@@ -10,10 +10,8 @@ from imagens.models import OS
 class Command(BaseCommand):
     def handle(self, *args, **options):
         for root, dirs, _ in os.walk(default_storage.location):
-            print(dirs, root, _)
             for dir in dirs:
                 path = os.path.join(root, dir)
-                print(dir)
                 regex_match = re.search("OS [0-9]+-[0-9]+", dir)
                 if regex_match:
                     os_number = dir[regex_match.span()[0]:regex_match.span()[1]]

@@ -31,8 +31,6 @@ class ValidateOSView(views.APIView):
  
         year = os[7:9]
 
-        print('AAAAA', OS.objects.filter(os=os).exists())
-
         if year < year_available:
             return response.Response({"ok": False, "msg": 'Ano indisponível para tirar foto'})
         return response.Response({"ok": OS.objects.filter(os=os).exists()})
