@@ -72,7 +72,7 @@ class Image(models.Model):
         options={'quality': 60}, 
         cachefile_strategy=JustInTime()
     )
-    created_at = models.DateTimeField(default=now, auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.step_os.step.name} - Image {self.pk}"
