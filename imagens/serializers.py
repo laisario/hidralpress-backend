@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from .models import OS, Sector, Step, Image, StepOs
+from .models import OS, Sector, Step, Image, StepOs, Video
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -69,8 +69,11 @@ class OSSerializerWrite(serializers.ModelSerializer):
         )
 
         image = validated_data["image"]
+        video = validated_data["video"]
         if image:
             Image.objects.create(step_os=step_os, image=image)
+        if video:
+            Video.objects.create(step_os=step_os, video=video)
 
         return os
 
