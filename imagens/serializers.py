@@ -55,7 +55,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
 
     class Meta:
         model = OS
-        fields = ['id', 'os', 'sector', "step" , "image"]
+        fields = ['id', 'os', 'sector', "step" , "image", 'video']
 
 
     def create(self, validated_data):
