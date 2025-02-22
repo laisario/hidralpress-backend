@@ -51,6 +51,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
     image = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
+    video = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
 
     class Meta:
         model = OS
