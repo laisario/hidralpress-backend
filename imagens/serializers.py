@@ -46,7 +46,7 @@ SECTOR_CHOICES =(
 ) 
 
 
-class OSSerializerWrite(serializers.serializer):
+class OSSerializerWrite(serializers.Serializer):
     os = serializers.CharField(required=True, max_length=20)
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
