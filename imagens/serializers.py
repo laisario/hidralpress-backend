@@ -71,7 +71,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
         )
 
         image = validated_data["image"]
-        video = validated_data["video"]
+        video = validated_data.get('video', None)
         if image:
             Image.objects.create(step_os=step_os, image=image)
         elif video:
