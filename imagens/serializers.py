@@ -50,8 +50,8 @@ class OSSerializerWrite(serializers.ModelSerializer):
     os = serializers.CharField(required=True, max_length=20)
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
-    image = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
-    video = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
+    image = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True)
+    video = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True)
 
     class Meta:
         model = OS
@@ -63,7 +63,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
         os, created = OS.objects.get_or_create(os=validated_data["os"])
         os.sector = sector
         os.save()
-        
+
         step, _ = Step.objects.get_or_create(name=validated_data["step"])
         step_os, _ = StepOs.objects.get_or_create(
             step=step,
