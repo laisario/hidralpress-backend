@@ -80,13 +80,11 @@ class OSSerializerWrite(serializers.Serializer):
         video = validated_data.get('video', None)
         if image:
             image = Image.objects.create(step_os=step_os, image=image)
-        elif video:
+        if video:
             video = Video.objects.create(step_os=step_os, video=video)
 
         return {
-            "os": os.os,
-            "sector": sector.name,
-            "step": step.name,
+            "id": os.id,
             "image": ImageSerializer(image).data if image else None,
             "video": VideoSerializer(video).data if video else None
         }
