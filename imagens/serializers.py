@@ -75,7 +75,7 @@ class OSSerializerWrite(serializers.Serializer):
             step=step,
             os=os,
         )
-
+        print(validated_data, "bbbbbbbbbbbbb")
         image = validated_data.get('image', None)
         video = validated_data.get('video', None)
         if image:
