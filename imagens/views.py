@@ -15,11 +15,11 @@ class OSViewSet(viewsets.ModelViewSet):
             return OSSerializerWrite
         return OSSerializerRead
     
-    def create(self, request, *args, **kwargs):
-        serializer = OSSerializerWrite(data=request.data)
-        serializer.is_valid()
-        os = serializer.save(**serializer.validated_data)
-        return response.Response(OSSerializerRead(os).data)
+    # def create(self, request, *args, **kwargs):
+    #     serializer = OSSerializerWrite(data=request.data)
+    #     serializer.is_valid()
+    #     os = serializer.save(**serializer.validated_data)
+    #     return response.Response(OSSerializerRead(os).data)
 
 
 class ValidateOSView(views.APIView):
