@@ -17,7 +17,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Image
+        model = Video
         fields = ['id', 'step_os', 'video', 'created_at']
 
 
