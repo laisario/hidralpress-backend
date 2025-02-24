@@ -2,7 +2,7 @@ import os
 import re
 from rest_framework import viewsets, response, views, status
 from .models import OS, Sector, Step, Image, Video
-from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer, VideoSerializer
+from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer, VideoSerializer, ContentSerializer
 from datetime import date
 from django.core.files.storage import default_storage
 
@@ -14,12 +14,25 @@ class OSViewSet(viewsets.ModelViewSet):
         if self.request.method in ["POST", "PUT", "UPDATE"]:
             return OSSerializerWrite
         return OSSerializerRead
-    
-    # def create(self, request, *args, **kwargs):
-    #     serializer = OSSerializerWrite(data=request.data)
-    #     serializer.is_valid()
-    #     os = serializer.save(**serializer.validated_data)
-    #     return response.Response(OSSerializerRead(os).data)
+
+class GetContent(views.APIView):
+    def get(self, request, format=None):
+        step_name = request.query_params.get('step')
+        os_identifier = request.query_params.get('os')
+        images_queryset = Image.objects.filter(
+            step_os__step__name=step_name,
+            step_os__os__os=os_identifier
+        )
+        videos_queryset = Video.objects.filter(
+            step_os__step__name=step_name,
+            step_os__os__os=os_identifier
+        )
+
+        content = images_queryset.union(videos_queryset).order_by('created_at')
+        
+        serializer = ContentSerializer(content, many=True)
+
+        return response.Response(serializer.data)
 
 
 class ValidateOSView(views.APIView):

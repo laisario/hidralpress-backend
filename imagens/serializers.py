@@ -84,3 +84,15 @@ class OSSerializerRead(serializers.ModelSerializer):
     class Meta:
         model = OS
         fields = ['id', 'os', 'sector']
+
+
+class ContentSerializer(serializers.Serializer):
+    image = ImageSerializer(required=False, many=False)
+    video = VideoSerializer(required=False, many=False)
+
+    def to_representation(self, instance):
+        if isinstance(instance, Image):
+            return {"image": instance}
+        if isinstance(instance, Video):
+            return {"video": instance}
+        return super().to_representation(instance)
