@@ -21,9 +21,15 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class VideoSerializer(serializers.ModelSerializer):
+    video = serializers.SerializerMethodField()
+
     class Meta:
         model = Video
         fields = ['id', 'step_os', 'video', 'created_at']
+    
+    def get_video(self, obj):
+        url = settings.BACK_URL + obj.video.url
+        return url
 
 
 class SectorSerializer(serializers.ModelSerializer):
