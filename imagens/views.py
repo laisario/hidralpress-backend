@@ -15,7 +15,7 @@ class OSViewSet(viewsets.ModelViewSet):
             return OSSerializerWrite
         return OSSerializerRead
 
-class GetContent(views.APIView):
+class GetContentView(views.APIView):
     def get(self, request, format=None):
         step_name = request.query_params.get('step')
         os_identifier = request.query_params.get('os')
