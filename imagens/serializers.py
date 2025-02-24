@@ -63,6 +63,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
         os, created = OS.objects.get_or_create(os=validated_data["os"])
         os.sector = sector
         os.save()
+        
         step, _ = Step.objects.get_or_create(name=validated_data["step"])
         step_os, _ = StepOs.objects.get_or_create(
             step=step,
