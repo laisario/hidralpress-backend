@@ -76,8 +76,8 @@ class OSSerializerWrite(serializers.Serializer):
             "os": os.os,
             "sector": sector.name,
             "step": step.name,
-            "image": image.url if image else None,
-            "video": video.url if video else None
+            "image": image if image else None,
+            "video": video if video else None
         }
 
 class OSSerializerRead(serializers.ModelSerializer):
