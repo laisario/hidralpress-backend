@@ -72,8 +72,13 @@ class OSSerializerWrite(serializers.Serializer):
         elif video:
             Video.objects.create(step_os=step_os, video=video)
 
-        return os
-
+        return {
+            "os": os.os,
+            "sector": sector.name,
+            "step": step.name,
+            "image": image.url if image else None,
+            "video": video.url if video else None
+        }
 
 class OSSerializerRead(serializers.ModelSerializer):
     class Meta:
