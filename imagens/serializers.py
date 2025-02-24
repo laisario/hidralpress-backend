@@ -61,8 +61,6 @@ class OSSerializerWrite(serializers.Serializer):
     os = serializers.CharField(required=True, max_length=20)
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
-    image = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True, required=False)
-    video = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True, required=False)
 
     def create(self, validated_data):
         sector, _ = Sector.objects.get_or_create(name=validated_data["sector"])
@@ -84,7 +82,9 @@ class OSSerializerWrite(serializers.Serializer):
             video = Video.objects.create(step_os=step_os, video=video)
 
         return {
-            "id": os.id,
+            "os": os.os,
+            "sector": sector.name,
+            "step": step.name,
             "image": ImageSerializer(image).data if image else None,
             "video": VideoSerializer(video).data if video else None
         }
