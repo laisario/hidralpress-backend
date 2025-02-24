@@ -83,9 +83,7 @@ class OSSerializerWrite(serializers.Serializer):
         elif video:
             video = Video.objects.create(step_os=step_os, video=video)
 
-        print(ImageSerializer(image).data if image else None, VideoSerializer(video).data if video else None, "aaaaaaaaaaaaaaa")
         return {
-            "id": image.id if image else video.id,
             "os": os.os,
             "sector": sector.name,
             "step": step.name,
