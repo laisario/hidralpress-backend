@@ -92,7 +92,7 @@ class ContentSerializer(serializers.Serializer):
 
     def to_representation(self, instance):
         if isinstance(instance, Image):
-            return {"image": ImageSerializer(instance)}
+            return {"image": ImageSerializer(instance).data}
         if isinstance(instance, Video):
-            return {"video": VideoSerializer(instance)}
+            return {"video": VideoSerializer(instance).data}
         return super().to_representation(instance)
