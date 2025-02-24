@@ -85,7 +85,7 @@ class OSSerializerWrite(serializers.Serializer):
 
         print(image, video, "aaaaaaaaaaaaaaaa")
         return {
-            "id": image.id or video.id,
+            "id": image.id if image else video.id,
             "os": os.os,
             "sector": sector.name,
             "step": step.name,
