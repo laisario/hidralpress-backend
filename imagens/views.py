@@ -1,5 +1,6 @@
 import os
 import re
+from itertools import chain
 from rest_framework import viewsets, response, views, status
 from .models import OS, Sector, Step, Image, Video
 from .serializers import OSSerializerWrite, OSSerializerRead, SectorSerializer, StepSerializer, ImageSerializer, StepOsSerializer, VideoSerializer, ContentSerializer
@@ -28,8 +29,7 @@ class GetContentView(views.APIView):
             step_os__os__os=os_identifier
         )
 
-        content = images_queryset.union(videos_queryset).order_by('created_at')
-        
+        content = sorted(chain(images_queryset, videos_queryset), key=lambda obj: obj.created_at, reverse=True)
         serializer = ContentSerializer(content, many=True)
 
         return response.Response(serializer.data)
