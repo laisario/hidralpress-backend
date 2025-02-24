@@ -83,7 +83,9 @@ class OSSerializerWrite(serializers.Serializer):
         elif video:
             video = Video.objects.create(step_os=step_os, video=video)
 
+        print(image, video, "aaaaaaaaaaaaaaaa")
         return {
+            "id": image.id or video.id,
             "os": os.os,
             "sector": sector.name,
             "step": step.name,
