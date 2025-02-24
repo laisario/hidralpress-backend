@@ -82,7 +82,7 @@ class OSSerializerWrite(serializers.Serializer):
             image = Image.objects.create(step_os=step_os, image=image)
         if video:
             video = Video.objects.create(step_os=step_os, video=video)
-
+        print(image, video, "aaaaaaaaaaaa")
         return {
             "os": os.os,
             "sector": sector.name,
