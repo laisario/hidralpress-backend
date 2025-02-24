@@ -5,6 +5,7 @@ from .models import OS, Sector, Step, Image, StepOs, Video
 
 class ImageSerializer(serializers.ModelSerializer):
     thumbnail = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = Image
@@ -12,6 +13,10 @@ class ImageSerializer(serializers.ModelSerializer):
 
     def get_thumbnail(self, obj):
         url = settings.BACK_URL + obj.thumbnail.url
+        return url
+    
+    def get_image(self, obj):
+        url = settings.BACK_URL + obj.image.url
         return url
 
 
