@@ -55,7 +55,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
 
     class Meta:
         model = OS
-        fields = ['id', 'os', 'sector', "step" , "image", 'video']
+        fields = ['id', 'os', 'sector']
 
 
     def create(self, validated_data):
@@ -70,7 +70,7 @@ class OSSerializerWrite(serializers.ModelSerializer):
             os=os,
         )
 
-        image = validated_data["image"]
+        image = validated_data.get('image', None)
         video = validated_data.get('video', None)
         if image:
             Image.objects.create(step_os=step_os, image=image)
