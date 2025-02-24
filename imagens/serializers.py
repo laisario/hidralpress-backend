@@ -46,17 +46,12 @@ SECTOR_CHOICES =(
 ) 
 
 
-class OSSerializerWrite(serializers.ModelSerializer):
+class OSSerializerWrite(serializers.serializer):
     os = serializers.CharField(required=True, max_length=20)
     sector = serializers.ChoiceField(choices=SECTOR_CHOICES, required=True)
     step = serializers.CharField(required=True)
     image = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True, required=False)
     video = serializers.FileField(max_length=None, allow_empty_file=True, use_url=True, required=False)
-
-    class Meta:
-        model = OS
-        fields = ['id', 'os', 'sector', 'image', 'video']
-
 
     def create(self, validated_data):
         sector, _ = Sector.objects.get_or_create(name=validated_data["sector"])
